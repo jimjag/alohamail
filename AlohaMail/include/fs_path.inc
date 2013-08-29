@@ -27,7 +27,9 @@ function fs_mkdir($path){
 		$partial_path = substr($path, 0, $offset);
 		$exists = fs_exists($partial_path);
 		//echo 'fs_m: '.$partial_path.','.realpath($partial_path).'('.$exists.")\n";
-		if (!fs_exists($partial_path) && !mkdir($partial_path, 0700)) return false;
+		$old_umask = umask(0);
+		if (!fs_exists($partial_path) && !mkdir($partial_path, 0770)) return false;
+        umask($old_umask);
 	}
 	
 	return true;

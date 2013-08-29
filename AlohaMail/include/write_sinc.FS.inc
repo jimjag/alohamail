@@ -76,6 +76,7 @@
     
 		// write code to session include file (in sessions folder)
 		$session_file_path = $SESSION_DIR.$session.".php";
+		fs_mkdir($SESSION_DIR);
 		$fp=fopen($session_file_path, 'w');
 		if ($fp){
 			if (!fputs($fp,$string))

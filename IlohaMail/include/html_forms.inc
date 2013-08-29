@@ -1,0 +1,1 @@
+<?phpfunction input_text($name, $value, $size=false){	return '<input type="text" name="'.$name.'" value="'.$value.'"'.($size?'size='.$size:'').'>';}?>

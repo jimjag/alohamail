@@ -1,0 +1,120 @@
+INSTALL
+Modified: Feb 25, 2004
+
+Introduction
+============
+This document assumes you're running Apache, and have PHP4 (v 4.1.2 or
+later) installed.  If you are running a version of PHP earlier than 4.3.10,
+you are STRONGLY encouraged to upgrade.
+
+This document will walk you through the steps necessary to setup 
+IlohaMail with a file-based backend.  It is possible to setup IlohaMail
+with a MySQL-backend, which is highly recommended.  The calendar/scheduler feature also requires a database back-end.
+
+For differences between the two backends, see the FAQ available at:
+http://ilohamail.org/docs/view.php?id=47
+
+If you like IlohaMail, please consider making a donation.  Donations can be made via PayPal, by clicking on the "donate" button found on ilohamail.org.
+
+
+Updating
+========
+See the file UPGRADING for more information on updating older versions.
+
+
+Menu
+====
+Below, you will find 2 modes of installation:
+  "Quick and Dirty" 	- This is for the impatient risk takers
+  "Proper" 		- This is what you should do
+
+
+Quick and Dirty Installation
+============================
+This is for the impatient.  You are ENCOURAGED to follow the "Proper Installation" instructions below.  The "Quick and Dirty" installation should only be used for testing the product.  For actual deployment, follow the proper installation instructions.
+
+IF YOU CHOOSE THE "QUICK AND DIRTY" INSTALLATION, INTERNAL DATA FILES CONTAINING SENSITIVE DATA MAY BE ACCESSIBLE FROM THE PUBLIC.  You have been warned.
+
+Following instructions assume you're on a UNIX-based system running Apache, have shell (SSH/telnet) access as the root user (or can 'sudo'), and the document root (folder where your HTML files are) is in /usr/local/apache/htdocs.  This may be different on your server.
+
+1. Download and unpack the IlohaMail source release.
+	e.g.
+	$tar xzf IlohaMail-version.tar.gz
+
+2.  Move (or FTP) the IlohaMail-version/IlohaMail directory to a location inside your document root.
+	e.g.
+	$cd IlohaMail-version
+	$mv IlohaMail /usr/local/apache/htdocs
+
+3.  Give web server process read/write privileges to all folders in IlohaMail/data
+	e.g.
+	$cd /usr/local/apache/IlohaMail
+	$chown -R apache_user data
+
+	HINT: See "Proper Installation" below for alternatives.
+
+4.  OPTIONAL:  Change the name of the "IlohaMail" folder you moved in step 2 to something easier to remember like "webmail".  Alternatively, create a symbolic link in your DOCUMENT_ROOT to the IlohaMail/source directory
+	e.g.
+	$cd /usr/local/apache/htdocs
+	$ln -s IlohaMail/source webmail
+
+5.  Try accessing the interface with your browser.  If you did step 4, the URL should be something like:
+	http://yourdomain.com/webmail/
+	
+Otherwise, it'll be something like:
+	http://yourdomain.com/IlohaMail/
+
+6.  RECOMMENDED:  Move your data directory to a location outside your web root.  Then, update $UPLOAD_DIR, $CACHE_DIR, $USER_DIR, $SESSION_DIR to point to the new location.  Paths should be absolute, or relative to the source directory.  This will prevent your user's data from being exposed to the world.
+
+7.  OPTIONAL:  Look in the conf/conf.php and conf/login.inc files for various configuration options.  You may also use a MySQL backend, which is recommended.
+
+
+Proper Installation
+===================
+Following instructions assume you're on a UNIX-based system running Apache, have shell (SSH/telnet) access as root, and the document root (folder where your HTML files are) is in /usr/local/apache/htdocs.  This may be different on your server.
+
+If you get stuck here, try the "Quick and Dirty" installation above.  The "Quick and Dirty" installation works on a wider range server configurations, but should only be used as a last resort, or temporary measure.
+
+1. Download and unpack the tar ball, cd into the IlohaMail directory.
+	e.g.
+	$tar xzf IlohaMail-version.tar.gz
+	$cd IlohaMail-version
+
+
+2. Move the IlohaMail directory to any location on the hard drive.
+	e.g.
+	$mv IlohaMail /www/IlohaMail
+
+
+3. Tell Apache where IlohaMail is.  Use ONE of the following:
+
+	3a. Add an "Alias" directive in your httpd.conf file, and point it to the IlohaMail/source directory.
+	e.g.
+	Alias /webmail /usr/local/apache/IlohaMail/source
+
+	3b. Alternatively, you might want to setup a different domain like "webmail.yourdomain.com" just for your webmail interface.  In this case, add a new VirtualHost entry in your httpd.conf file, and set the DocumentRoot to the IlohaMail/source folder.
+
+	3c.  If you do not have access to the httpd.conf file, you may also create a symbolic link in your document root.
+	e.g.
+	$ln -s /www/IlohaMail/source /usr/local/apache/htdocs/webmail
+
+	3d.  If neither 3 nor 3b works, use the "Quick and Dirty" installation (instructions above).
+
+
+4. Set backend folder permissions.  Change owner to the user Apache runs as (look in httpd.conf if you're not sure, usually it's something like "nobody" or "www"):
+	e.g.
+	$chown -R apache_user /www/IlohaMail/data
+
+	NOTE: Alternatively, you may change the permissions of the folders to 777.  This is NOT recommended, but will work.
+
+
+5. Check your PHP.ini file.  You need:
+	file_uploads = on
+
+
+6. Restart Apache, and try accessing the program.  If it works, give your
+self a pat on the back.
+
+
+7. Edit conf/conf.php and conf/login.inc files as necessary.  Using the MySQL back-end is also recommended (see documentation insde "Docs" folder).
+

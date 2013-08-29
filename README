@@ -1,0 +1,112 @@
+Version: 0.9.0-devel
+Modified: Sep 14, 2003
+
+			//////////////////
+			//  IlohaMail   //
+			//////////////////
+		
+
+What is IlohaMail?
+==================
+IlohaMail (pronounced: e-lo-ha-mail) is a lightweight, yet full featured,
+multilingual webmail program that is easy to use and install. It runs on a
+stock, default build of PHP, and does not require databases (although 
+database support is available).  IlohaMail supports IMAP and POP3. 
+
+
+License
+=======
+IlohaMail is released under the General Public License (GPL). You may
+download it, use it, deploy it, re-distribute it, or feed it to your 
+kitten as you wish, free of charge.
+Please refer to the file "COPYING" that should have come with this file,
+for additional information.
+
+
+Installation
+============
+Please refer to the document "INSTALL" (or "UPGRADING" if upgrading) that 
+should have been included
+
+
+Support
+=======
+Mailing Lists
+http://ilohamail.org/main.php?page=ML
+
+Online forum:
+http://ilohamail.org/forum/
+
+Online docs:
+http://ilohamail.org/docs/
+
+
+Additional Info
+===============
+Please visit the IlohaMail website at <http://ilohamail.org>
+There, you will find the latest news, documentation, and online discussions.
+
+
+Credits
+=======
+Project Lead
+	Ryo Chijiiwa
+	
+Translators
+	Catalan				Joan Manel Moreno Merino
+	Chinese				Danny Lin
+	Czech				Petr Kocvara
+	Danish				Torben Rybner
+					Niels Baggesen
+					Frederik Dannemare
+	Dutch				Jeroen van der Vegt
+	English (GB)			Lovell Fuller
+	French				Alain GŽlinas
+					Sylvestre Taburet 
+	Galician			Sergio Ares Chao
+	German				Peter Surda
+					Peter Holzleitner
+	Hebrew				gfdsa
+	Hungarian			Kornel R. Bangha
+	Italian				Brocco Amos
+	Korean				Soonkoo Kwon
+	Lithuanian 			Oleg Andrejev
+	Norwegian - bokmål		Tor Olsen
+	Norwegian - nynorsk		Leif Halvard
+	Persian				Hamid Tarkhorani
+	Polish				Marcin Piliszczuk
+					Cezary Jackiewicz
+	Standard Portuguese		Darwings
+	Brazilian Portuguese		Eduardo Mantovani
+					Gilberto Sena Rios 
+	Romanian			Vasile Octavia
+	Russian				Slava Kuznetsov
+					Boris Tekaev
+	Spanish  			Alejandro Gonz‡lez
+					Eduardo Mantovani
+					Rodolfo Pilas
+	Swedish				Markus Svensson
+	Vietnamese			NGUYEN DINH Quoc-Huy
+
+Code Contribution
+	TOMO <groove@spencernetwork.org> - jcode.php*
+	pob@medienrecht.org - qp_encode*
+	Torben Rybner - utf7.inc, others
+	Jeroen van der Vegt - UI enhancements, JavaScript others
+	Paul Martin - GPG support prototype
+	Gilberto Sena Rios - various bug fixes
+	Henry Fong - winmail.dat support
+	Graham Norbury - tnef_decoder.php
+	Benjamin Weinberg - CSV contact importer
+	Jayme Metcalfe - LDAP importer
+		*Public domain code, used without explicit permission
+
+UI Design Concept (v0.8)
+	Yozh.
+
+UI Color Scheme
+	IMP/horde.org
+
+Logo Design
+	Alison Eckhardt
+

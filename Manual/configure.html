@@ -1,0 +1,444 @@
+<html>
+<head><title>Configure IlohaMail</title></head>
+<body>
+
+<center><h2>Configure IlohaMail</h2></center>
+<blockquote>
+
+<p><font size="+1"><b>Introduction</b></font><br>
+All configuration files are located in "IlohaMail/conf".  <b>IlohaMail will work with just the default settings.</b>  In fact, it is recommended that you make sure your installation was successful before making the changes documented in this page (that way, if something breaks, you know it was some change you made to the config files).
+
+<p><b>Please look in the respective config files for up-to-date documentation!</b>
+
+<p><font size="+1"><b>login.inc</b></font><br>
+<blockquote>
+	This file contains configuration options related to the login screen and login/logout process.
+	<p>
+	<b>default_hosts</b><br><br>
+	The $default_host variable can be used to determine how user's select the email server to log into and.
+	<table border=1>
+		<tr>
+			<td><b>Value of $default_host</td><td><b>Effect</b></td>
+		</tr>
+		<tr>
+			<td valign=top>empty string</td>
+			<td>a text box will be displayed (allowing users to specify any IMAP server).</td>
+		</tr>
+		<tr>
+			<td valign=top>"<i>imap server</i>"</td>
+			<td>The imap server will be hard coded in a "hidden" tag.</td>
+		</tr>
+		<tr>
+			<td valign=top><i>array</i></td>
+			<td>A popup menu containing all specified servers will be displayed.  The popup will use the keys as the actual host string, but display the actual values of the array.</td>
+		</tr>
+	</table>
+	
+	<p><b>$adv_mode</b><br>
+	Temporarily unused.
+
+	<p><b>$default_port</b><br>
+	The $default_port actually specifies the default "protocol", and should be set to 143 (IMAP) or 110 (POP3).  If advanced mode is enabled, the user will be able to select either protocols, although this variable will still be used to set the default.
+
+	<p><b>$default_rootdir</b><br>
+	Default root directory.  Rootdirs are not used for POP accounts, and are rarely used with IMAP accounts.  The rootdir setting can be used if you want IlohaMail to ignore all folders except for those under a specific path.  For example, if the folder list shows everything in <tt>~user/</tt> but all mailboxes are in <tt>~user/mail/</tt>, set rootdir to <tt>mail</tt> (or <tt>~/mail/</tt>).<br>
+If advanced mode is enabled, the user will be able to change the rootdir.  Note, however, that the rootdir only has any effect the first time the user logs in.  On subsequent logins, the user's preferences will be used (which can be changed in the Prefs panel after logging in).
+
+	<p><b>$default_lang</b><br>
+	Default language to use if user doesn't specify one when first logging in.  See include/langs.inc for available languages.
+
+	<p><b>$hide_host</b><br>
+	Hides the "Server" field in login screen if $default_host is specified. (set to 1 to hide, 0 to show)
+
+<p><b>$hide_protocol</b><br>
+Hides protocol selection menu in login screen, uses $default_port. (set to 1 to hide, 0 to show)
+
+<p><b>$hide_rootdir</b><br>
+Hides rootdir field in login screen, uses $default_rootdir. (set to 1 to hide, 0 to show)
+
+<p><b>$hide_lang</b><br>
+Hides language selection menu (set to 1 to hide, 0 to show).  If hidden, $default_lang will be used.
+
+<p><b>$logout_url</b><br>
+URL to redirect to when user logs out.  Default is "index.php" which is the login screen.
+
+<p><b>$AUTO_APPEND</b><br>
+This directive allows you to specify a string to be appeneded to user ID&#39s upon login.  Different strings can be specified for different hosts.  In the example below, "@domain1.com" will be appended for users logging into mail.domain1.com, and "@domain2.com" will be appended for those logging into mail.domain2.com.
+<pre>
+$AUTO_APPEND["mail.domain1.com"] = "@domain1.com";
+$AUTO_APPEND["mail.domain2.com"] = "@domain2.com";
+</pre>
+
+</blockquote>
+
+<p><font size="+1"><b>conf.inc</b></font><br>
+<blockquote>
+<b>Look at the comments inside the actual conf.inc file for up-to-date information!</b>
+
+<p><b>backend</b><br><br>
+You can specify what kind of data backend to use. 
+<table border=1>
+<tr><td><b><nobr>Value of $backend</nobr></b></td><td><b>Explanation</b></td></tr>
+<tr>
+	<td valign="top">FS</td>
+	<td><b>Default setting</b>.  All data stored on HD</td>
+</tr>
+<tr>
+	<td valign="top">MySQL</td>
+	<td>Uses MySQL back-end for some, or all, features.<br>
+	Make sure the conf/mysqlrc.inc file is properly set up.
+	</td>
+</tr>
+</table>
+
+<p><b>$UPLOAD_DIR</b> - Path to "uploads" directory
+<br><b>$CACHE_DIR</b> - Path to "cache" directory
+<br><b>$USER_DIR</b> - Path to "users" directory
+<br><b>$SESSION_DIR</b> - Path to "sessions" directory
+
+
+<p><b>log</b><br><br>
+Settings related to the log feature.  The log is deactivated by default.  To store log entries in a database, make sure the appropriate table is present and configured (e.g. for MySQL in conf/mysqlrc.inc).
+<table border="1">
+<tr><td><b>Variable</b></td><td><b>Explanations</b></td><td><b>Value(s)</b></td></tr>
+<tr>
+	<td valign="top">$log_active</td>
+	<td valign="top">Turn logging on/off.  Off by default.</td>
+	<td valign="top">true or false</td>
+</tr>
+<tr>
+	<td valign="top">$log_file</td>
+	<td valign="top">Path to log file (for file-based log only).  Use absolute path or path relative to source directory.  Make sure PHP has write privileges to the specified path/file.
+	</td>
+	<td valign="top">string, path to file</td>
+</tr>
+<tr>
+	<td valign="top">$log_template</td>
+	<td valign="top">
+		Template log entry (for file-based log only).  Keywords in the template will be replaced with appropriate data when making an entry in the log.  Keywords:
+			<ul>
+			<li>"date" : Date and time of entry
+			<li>"ip" : client's IP address
+			<li>"acct" : Account user is logging in as
+			<li>"comment" : error message or comment
+			</ul>
+	</td>
+	<td valign="top">template string</td>
+</tr>
+</table>
+
+<p><b>Spam Prevention</b><br><br>
+	This feature is not for blocking incoming spam, but 
+	for preventing possible use of IlohaMail for spamming
+	purposes.
+<table border="1">
+<tr><td><b>Variable</b></td><td><b>Explanations</b></td><td><b>Value(s)</b></td></tr>
+<tr>
+	<td valign="top">$max_rcpt_message</td>
+	<td valign="top">Maximum number of recepients per message</td>
+	<td valign="top">integer</td>
+</tr>
+<tr>
+	<td valign="top">$max_rcpt_session</td>
+	<td valign="top">Maximum recepients per session.  Once this value is sent, the user must log out and log back in in order to send again.
+	</td>
+	<td valign="top">integer</td>
+</tr>
+<tr>
+	<td valign="top">$log_template</td>
+	<td valign="top">Minimum interval between "Send"operations.  This is to prevent automated spamming, but make sure the value is not prohibitively high.
+	(Anything more than 60 seconds might cause undue inconveniences for the user.).
+	</td>
+	<td valign="top">integer (seconds)</td>
+</tr>
+<tr>
+	<td valign="top">$report_spam_to</td>
+	<td valign="top">Useful for ISP's that have some address where users can report spam.  If this string is not empty (it is assumed to be an email address), a "Report Spam" link will be added in the read message window.  Clicking on the link will open a message composition window with the value of this setting in the "To" field and the full message header+body in the message box.
+	</td>
+	<td valign="top">string (email address)</td>
+</tr>
+</table>
+
+<p><b>AUTH_MODE</b><br><br>
+This directive allows you to specify the default authentication method when connecting to IMAP servers.
+<table border=1>
+<tr><td><b><nobr>Value of $AUTH_MODE</nobr></b></td><td><b>Explanation</b></td></tr>
+<tr>
+	<td valign="top">"plain"</td>
+	<td><b>Default</b>.  Always uses plain text authentication</td>
+</tr>
+<tr>
+	<td valign="top">"auth"</td>
+	<td>Attempt to use encrypted authentication methods (currently CRAM-MD5), and revert to "plain" if that fails.
+	</td>
+</tr>
+<tr>
+	<td valign="top">"check"</td>
+	<td>Checks for authentication methods supported by the IMAP server.  It'll use encrypted authentication if available, otherwise plain text authentication will be used.
+	</td>
+</tr>
+</table>
+
+<p><b>MAX_EXEC_TIME</b><br>
+This directive specifies the maximum execution time for individual pages, and overrides the PHP defaults (usually 30 or 60 seconds).  Set this directive to a numeric value (includig 0 for "unlimited").
+
+<p><b>TRUST_USER_ADDRESS</b><br>
+<i>Deprecated</i> - For all intents and purposes, TRUST_USER_ADDRESS is always on since alternate sender identities allows users to override From and Reply-To fields.  However, the username and host the user is logged in as is now in Received header.
+<!--
+This directive specifies whether or not to trust email addresses specified by the users (through the preferences panel).  When this value is set to 1 (true), users will be able to send messages as if from an account (or person) other than the one they are logged into, either for legitimate reasons or otherwise.  To avoid abuse, this is disabled (set to 0, false) by default.  This feature has been implemented in accordance with RFC822.
+<table border=1>
+<tr><td><b><nobr>Value</nobr></b></td><td><b>Explanation</b></td></tr>
+<tr>
+	<td valign="top">1</td>
+	<td>User specified email address is used in "From" field, and actual email address is used in "Sender" field</td>
+</tr>
+<tr>
+	<td valign="top">0</td>
+	<td><b>Default</b>Actual email address is used in "From" field, and user specified email address is used in "Reply-To" field. 
+	</td>
+</tr>
+</table>
+//-->
+
+<p><b>SMTP_SERVER</b><br>
+This directive specifies which SMTP to send messages through, when using the custom SMTP library (which is disabled by default).  For information on the custom SMTP library, refer to the documentation included in the source distribution.
+<br><b>SMTP_USER, SMTP_PASSWORD</b> - For use with SMTP Authentication.  Leave blank if you want to use actual user's account to authenticate.
+
+<p><b>TAG_LINE</b><br>
+Text to be auto-appended on out-going messasges.
+
+<p><b>TAG_LEVEL</b><br>
+This option is only for database backends.  In the database backend, each webmail user is given a "user level".  If you set the $TAG_LEVEL to 1, then all all users whose level is 0 will have tag lines appended to their messages, while users with level of 1 or higher will not.
+
+<p><b>MAX_SESSION_TIME</b><br>
+Maximum duration of sessions.  Once a session expires, users will be prompted to log out and log back in.  With a database backend, there&#39;s is a maximum limit of 24 hours.
+
+<p><b>MIN_FOLDERLIST_REFRESH, MIN_RADAR_REFRESH</b><br>
+Version 0.8.x allows users to specify the refresh interval for both the radar (upper right corner that checks for new messages in IMAP accounts) and folder list (also only in IMAP).  See comments in actual conf file for more info.
+
+</blockquote>
+
+<p><font size="+1"><b>defaults.generic.inc</b></font><br>
+<blockquote>
+Specify default values for user configurable options.  All of the settings here can be changed by the user.  All you can do is set the default values.<br>
+If your webmail interface will be supporting multiple servers that require different default settings (i.e. for rootdir, sent box name, etc), you can do so.  See the next section for more info.
+
+<p><b>$default_colors</b>
+<table border=1>
+<tr>
+	<td valign="top"><b>Element</b></td>
+	<td><b>Description</b></td>
+</tr>
+<tr>
+	<td valign="top"></td>
+	<td>
+	</td>
+</tr>
+<tr>
+	<td valign="top">tool_bg</td>
+	<td>Tool bar background color.
+	</td>
+</tr>
+<tr>
+	<td valign="top">folder_bg</td>
+	<td>Folder list background color
+	</td>
+</tr>
+<tr>
+	<td valign="top">folder_link</td>
+	<td>Folder list text color
+	</td>
+</tr>
+<tr>
+	<td valign="top">main_bg</td>
+	<td>Main frame background color
+	</td>
+</tr>
+<tr>
+	<td valign="top">main_hilite</td>
+	<td>Main frame hilite color.  Used on alternating lines in main list display.
+	</td>
+</tr>
+<tr>
+	<td valign="top">main_text</td>
+	<td>Non-link text color in main frame.
+	</td>
+</tr>
+<tr>
+	<td valign="top">main_link</td>
+	<td>Link color in main frame.
+	</td>
+</tr>
+<tr>
+	<td valign="top">quotes</td>
+	<td>Color of quoted text.
+	</td>
+</tr>
+</table>
+
+<p><b>$default_prefs</b>
+<table border=1>
+<tr>
+	<td valign="top"><b>Element</b></td>
+	<td><b>Description</b></td>
+	<td<b>Value(s)</b></td>
+</tr>
+<tr>
+	<td valign="top"></td>
+	<td></td>
+	<td valign="top"></td>
+</tr>
+<tr>
+	<td valign="top">colorize_quotes</td>
+	<td>Detect and colorize quotes (lines beginning with '&gt;').</td>
+	<td valign="top">1=On, 0=Off</td>
+</tr>
+<tr>
+	<td valign="top">detect_links</td>
+	<td>Detect URLs, and show as links</td>
+	<td valign="top">1=On, 0=Off</td>
+</tr>
+<tr>
+	<td valign="top">view_max</td>
+	<td>Maximum number of messages to show on a page in the list view.</td>
+	<td valign="top"><i>integer value</i></td>
+</tr>
+<tr>
+	<td valign="top">show_size</td>
+	<td>Show message sizes in list view.</td>
+	<td valign="top">1=On, 0=Off</td>
+</tr>
+<tr>
+	<td valign="top">save_sent</td>
+	<td>Save sent messages.  If set to 1 (on), there must be a value folder name entered in the next value ("save_box_name").</td>
+	<td valign="top">1=On, 0=Off</td>
+</tr>
+<tr>
+	<td valign="top">sent_box_name</td>
+	<td>Name of folder where sent items should be stored.  Previous value (save_sent) must be set to 1, for this feature to take effect.</td>
+	<td valign="top"><i>string: folder path</i></td>
+</tr>
+<tr>
+	<td valign="top">delete_trash</td>
+	<td>When this is enabled, the trash is automatically emptied.</td>
+	<td valign="top">1=On, 0=Off</td>
+</tr>
+<tr>
+	<td valign="top">trash_name</td>
+	<td>Name of folder where deleted items are stored.  If none are specified, message marked for deletion are deleted immediately.</td>
+	<td valign="top"><i>string: trash folder path</i></td>
+</tr>
+<tr>
+	<td valign="top">rootdir</td>
+	<td>Root directory, where all email folders are located.  IlohaMail will only list folders inside the rootdir.</td>
+	<td valign="top">
+		$rootdir (Allow user to specify during login)<br>
+		-OR-<br>
+		<i>root directory name</i>
+	</td>
+</tr>
+<tr>
+	<td valign="top">user_name</td>
+	<td>User's display name.  Leave this one blank...</td>
+	<td valign="top"></td>
+</tr>
+<tr>
+	<td valign="top">email_address</td>
+	<td>User's email address.  Typically, this should be left blank.
+	</td>
+	<td valign="top"></td>
+</tr>
+<tr>
+	<td valign="top">signature1</td>
+	<td>Signature...leave blank</td>
+	<td valign="top"></td>
+</tr>
+<tr>
+	<td valign="top">show_sig1</td>
+	<td>Attach sig by default?  Disable, since there is no sig by default.</td>
+	<td valign="top">0</td>
+</tr>
+<tr>
+	<td valign="top">lang</td>
+	<td>Language to use for the interface.</td>
+	<td valign="top">
+	$lang (allow user to select when logging on)<br>
+	-OR<br>
+	<i>language code</i>
+	</td>
+</tr>
+<tr>
+	<td valign="top">charset</td>
+	<td>Character set encoding to use.</td>
+	<td valign="top">
+	$lang_charset (if you set "lang" to $lang)<BR>
+	-OR-<BR>
+	<i>character set code</i>
+	</td>
+</tr>
+<tr>
+	<td valign="top">sort_field</td>
+	<td>Default sort field in list view.</td>
+	<td valign="top">"DATE","SUBJECT","SIZE", or "FROM"</td>
+</tr>
+<tr>
+	<td valign="top">sort_order</td>
+	<td>Default sort order in list view.</td>
+	<td valign="top">"ASC" or "DESC"</td>
+</tr>
+<tr>
+	<td valign="top">list_folders</td>
+	<td>Show folder list (in a column on the left hand side) as default</td>
+	<td valign="top">1=Show, 0=Don't show</td>
+</tr>
+<tr>
+	<td valign="top">view_inside</td>
+	<td>Read messages inside the frame.  Turn off to show in new window.</td>
+	<td valign="top">1=In frame, 0=New window</td>
+</tr>
+<tr>
+	<td valign="top">timezone</td>
+	<td>Default timezone</td>
+	<td valign="top">Integer: -12 to 12</td>
+</tr>
+<tr>
+	<td valign="top">html_in_frame</td>
+	<td>Show html message in frame/window instead of external window<br>Some messages may not render correctly, or show unfavorable content.</td>
+	<td valign="top">0 or 1</td>
+</tr>
+<tr>
+	<td valign="top">show_images_inline</td>
+	<td>Always show image attachments inline, after main message</td>
+	<td valign="top">0 or 1</td>
+</tr>
+</table>
+
+<p><b>$init_from_address</b><br>
+This specifies how to format the user's email address, especially when it does not take the form user@host.
+<table border=1>
+	<tr>
+		<td valign="top"><b>Value</b></td>
+		<td><b>Description</b></td>
+	</tr>
+	<tr>
+		<td valign="top">"%u"</td>
+		<td>Use if user name is the email address</td>	
+	</tr>
+	<tr>
+		<td valign="top">"%u@domain.com"</td>
+		<td>This will set the address to user@domain.com  even if the mail server is called something else (like "mail.domain.com")</td>	
+	</tr>
+</table>
+
+</blockquote>
+
+<p><font size="+1"><b>defaults.<i>host</i>.inc</b></font><br>
+<blockquote>
+If you're supporting multiple IMAP servers that require different default settings, you can do so by creating multiple defaults.<i>host</i>.inc files.  In other words, if you had two servers "exchange.domain.com" and "imap.domain.com", simply create a file called "defaults.exchange.domain.com.inc" and "defaults.imap.domain.com.inc".
+<p>If a matching defaults.<i>host</i>.inc file isn't found, IlohaMail will attempt to use the defaults.generic.inc file, so make sure it's available (and properly filled in).
+</blockquote>
+
+
+</blockquote>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<html>
+<head><title>Configure MySQL backend</title></head>
+<body>
+
+<center><h2>Configure MySQL Backend</h2></center>
+<blockquote>
+
+The standard version of IlohaMail includes full MySQL support.  If you decide to use a MySQL backend, sessions must be handled by MySQL.  However, you can still use a file-based backend for contacts and user preference management.<br>
+For detailed information on the differences between the two backends, read <a href="http://ilohamail.org/docs/view.php?id=47">this FAQ</a>.
+
+
+<p>Consult the MySQL documentation on how to use MySQL.  Here, we'll assume you have a properly configured and operational database.  (Note:  The example commands below have username/password options omitted.  On an actual production database, access to all databases should be password protected.)
+
+<blockquote>
+<ol>
+<li>Create a MySQL datsabase.
+<pre>$mysqladmin create webmail</pre>
+
+<li>Create tables.  Required/recommended table structures are included in the file {$IlohaMail}/MySQL/sql.  The easiest way to do this is to run the sql file through mysql, as such:
+<pre>$mysql webmail < sql</pre>
+
+<li>Configure conf/db_conf.php:
+<table border=1>
+<tr>
+	<td valign="top"><b>Variable</b></td>
+	<td><b>Description</b></td>
+</tr>
+<tr>
+	<td valign="top">$DB_HOST</td>
+	<td>MySQL server (ip or name)</td>
+</tr>
+<tr>
+	<td valign="top">$DB_USER</td>
+	<td>MySQL user to connect as</td>
+</tr>
+<tr>
+	<td valign="top">$DB_PASSWORD</td>
+	<td>Password of MySQL user</td>
+</tr>
+<tr>
+	<td valign="top">$DB_NAME</td>
+	<td><b>Required</b> MySQL database name (default: "webmail")</td>
+</tr>
+<tr>
+	<td valign="top">$DB_TYPE</td>
+	<td><b>Required</b> Set to "MySQL".</td>
+</tr>
+<tr>
+	<td valign="top">$DB_USERS_TABLE</td>
+	<td><b>Required</b> Name of main  table for user management</td>
+</tr>
+<tr>
+	<td valign="top">$DB_SESSIONS_TABLE</td>
+	<td><b>Required</b> Name of sessions management table (default: "sessions")
+	</td>
+</tr>
+<tr>
+	<td valign="top">$DB_CONTACTS_TABLE</td>
+	<td>
+	Name of contacts table. <br>
+	Leave undefined or empty to use default file-based backend.
+	</td>
+</tr>
+<tr>
+	<td valign="top">$DB_PREFS_TABLE</td>
+	<td>
+	Name of table containing user prefs. <br>
+	Leave undefined or empty to use default file-based backend.
+	</td>
+</tr>
+<tr>
+	<td valign="top">$DB_COLORS_TABLE</td>
+	<td>
+	Name of table containing user defined colors. <br>
+	Leave undefined or empty to use default file-based backend.
+	</td>
+</tr>
+<tr>
+	<td valign="top">$DB_IDENTITIES_TABLE</td>
+	<td>
+	Table for storing alternate sender identities.
+	</td>
+</tr>
+<tr>
+	<td valign="top">$DB_BOOKMARKS_TABLE</td>
+	<td>
+	Table for storing bookmark entries.
+	</td>
+</tr>
+<tr>
+	<td valign="top">$DB_CACHE_TABLE</td>
+	<td>
+	Cache table.  Optional: comment out to use file-based cache.
+	</td>
+</tr>
+<tr>
+	<td valign="top">$DB_LOG_TABLE</td>
+	<td>
+	Name of log table<br>
+	Leave undefined or empty to use default file-based backend.
+	If using file-based log, make sure log file path is set in conf/conf.inc.
+	<p>NOTE: Logging is inactive by default.  Make sure you activate it in conf/conf.inc
+	</td>
+</tr>
+<tr>
+	<td valign="top">$DB_PERSISTENT</td>
+	<td>
+	Set to <tt>true</tt> to use persistent connections.
+	<p>NOTE: Using persistent database connections may require configuration changes in PHP, Apache, and/or MySQL.
+	Read <a href="http://www.php.net/manual/en/print/features.persistent-connections.php">this document</a> for
+	more information.
+	</td>
+</tr>
+</table>
+<p>&nbsp;
+
+<li>Set value of $backend in conf/conf.inc to "DB"
+<br>&nbsp;<br>&nbsp;<br>&nbsp;
+
+</ol>
+</blockquote>
+
+</blockquote>
+</body></html>

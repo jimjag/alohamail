@@ -1,0 +1,10 @@
+Version 0.8.6
+Date: Mar 9, 2003
+
+Theme support is still very much work in progress, and the spcifications 
+are far from being solid.  At the end, themes will be much more flexible 
+than they are now.
+
+Theme authors should be aware that any themes created now based on the 
+default may (and probably will) break in future releases.  Please feel 
+free to send any suggestions to either the forums or mailling lists.

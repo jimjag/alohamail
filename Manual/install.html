@@ -1,0 +1,123 @@
+<html>
+<head><title>Installation</title></head>
+<body>
+<center><h2>Installation</h2>
+
+<table width="500"><tr><td>
+
+<font size=-1>If you are <b>upgrading</b> an existing installation of IlohaMail, consult the "UPGRADING" document included in the package.  Depending on the version you're running and changes made to the new version, procedures may differ significantly.</font>
+
+<!--
+<p><b>Debian users:</b> A Debian package of IlohaMail is available.  Follow the link found on the <a href="http://ilohamail.org/main.php?page=Downloads">downloads page</a>.
+
+<p><b>MacOS X:</b> A MacOS X installer of IlohaMail is available.  Follow the link found on the <a href="http://ilohamail.org/main.php?page=Downloads">downloads page</a>.
+//-->
+
+<p><b>Installation from tar-ball distribution:</b><br>
+The following steps will install IlohaMail with the default file-based backend.
+
+<ol>
+
+<!-- 1 //-->
+<li>Download and unpack the tar ball, cd into the IlohaMail-version directory.
+<center><table width="300"><tr><td bgcolor="#CCCCCC">
+<i>e.g.</i>
+<pre>$tar xzf IlohaMail-version.tar.gz
+$cd IlohaMail-version</pre>
+</td></tr></table></center><br>
+</li>
+
+<!-- 2 //-->
+<li>Move the IlohaMail directory to any location on your hard drive.  It is recommended that you place all files outside the document root, however, with version 0.7.10, it is safe to install inside the document root.
+<center><table width="300"><tr><td bgcolor="#CCCCCC">
+<i>e.g.</i>
+<pre>$mv IlohaMail /www/IlohaMail</pre>
+</td></tr></table></center>
+<br>
+</li>
+
+<!-- 3 //-->
+<li>Create a redirect using one of the following methods:
+	<table>
+		<tr>
+			<td valign="top">a.</td>
+			<td valign="top">
+				If you have access to the httpd.conf file, add an "Alias" directive in your httpd.conf file, and point it to the IlohaMail/source directory.	
+			</td>
+		</tr>
+	</table>
+
+	<!-- 3a //-->
+	<center>
+	<table width="300">
+		<tr>
+			<td bgcolor="#CCCCCC">
+				<i>e.g.</i>
+				<pre>Alias /webmail /www/IlohaMail/source</pre>
+			</td>
+		</tr>
+	</table>
+	</center>
+
+	<!-- 3b //-->
+	<table>
+		<tr>
+			<td valign="top">b.</td>
+			<td valign="top">
+				If you do not have access to the httpd.conf file, you can also create a symbolic link in your document root.
+			</td>
+		</tr>
+	</table>
+	<center>
+	<table width="300">
+		<tr>
+			<td bgcolor="#CCCCCC">
+				<i>e.g.</i><font size="-1">(replace {$DOCUMENT_ROOT} with path to your document root.</font>
+				<pre>$ ln -s /www/IlohaMail/source {$DOCUMENT_ROOT}/webmail</pre>
+			</td>
+		</tr>
+	</table>
+	</center>
+
+	<!-- 3c //-->
+	<table>
+		<tr>
+			<td valign="top">c.</td>
+			<td valign="top">
+				If all else fails, move the IlohaMail directory to inside your document root, and change it's name to something convenient (i.e "webmail").  When accessed, it will redirect users to "source/index.php".
+			</td>
+		</tr>
+	</table>
+
+<br>
+</li>
+
+<!-- 4 //-->
+<li>Set folder permissions:
+<center>
+<table width="300"><tr><td bgcolor="#CCCCCC">
+<i>e.g.</i> <font size="-1"></font>
+<pre>$chmod -R 733 /www/IlohaMail/data</pre>
+</td></tr></table></center>
+<br>Note:  Alternatively, you can also change the owner of the folders to the user Apache runs as (usually "www" or "nobody"), and set permissions to 700.
+<br><br>
+</li>
+
+<!-- 5 //-->
+<li>Check PHP configuration:<br>
+<center>
+	<table border=1>
+		<tr><td><tt>short_open_tag</tt></td><td>On</td></tr>
+		<tr><td><tt>file_uploads</tt></td><td>On</td></tr>
+	</table>
+</center><br>
+</li>
+
+<li>Restart Apache, and try accessing the program.  If it works, give your self a pat on the back.<br><br></li>
+
+<li>It is <b>strongly recommended</b> that you use a database backend on large scale production environments.  You also need a database backend to use all calendar features.
+</li>
+</ol>
+</td></tr></table>
+</center>
+</html>

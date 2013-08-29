@@ -1,0 +1,35 @@
+In Message List (main.php)
+-------------------------
+i - next message up
+k - next message down
+j - previous page
+l - next page
+o - open highlighted item
+space - select highlighted item
+r - previous folder
+f - next folder
+m - move to folder
+d - delete
+
+
+In Read Message Window (read_message.php)
+----------------------------------------
+u - return to message listing
+l - next message
+j - previous message
+
+
+Notes
+-----
+Activate by turning JavaScript usage to "high" (in options).
+
+Known to work in the following browsers:
+-MSIE 6 (Windows)
+-Safari 1.2.2
+-FireFox 0.9
+-Mozilla 1.1
+-Camino 0.7
+
+Does NOT work in:
+-MSIE 5.2 for Mac
+-Safari 1.0

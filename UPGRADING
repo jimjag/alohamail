@@ -1,0 +1,157 @@
+UPGRADING
+Modified: April 12, 2005
+
+Instructions:
+Find the version you currently have installed from the list below (where it
+says "from _version_") and work your way up.  For an example, to go from
+0.7.2 to 0.7.5, you need to upgrade to 0.7.3, then upgrade to 0.7.5.
+
+0.9 pre-20050412 to 20050412
+============================
+Changes have been made to the MySQL backend schema.  Check MySQL/0.9.0 to update.  A new directive $DISABLE_BOOKMARKS_SHARING has been added to conf/conf.php.
+
+0.9 pre-20050323 to 20050323
+============================
+There are changes to the MySQL back-end.  Check MySQL/0.9.0 to update.  
+The file "conf/default.generic.inc" has been modified, 
+
+0.9 pre-20050312 to 20050312
+============================
+There are changes to the MySQL back-end.  Check MySQL/0.9.0 and run applicable commands.
+
+0.9 pre-20050121 to 20050121
+============================
+conf/conf.inc has been renamed to conf/conf.php.  Make sure to copy your old conf.inc file to conf.php.  Also, new configs have been added.
+
+0.9-x to later version
+===============================
+There have been some changes to the backend.  Check MySQL/0.9.0.sql for changes since the version you're currently running.  No changes required for FS backend.
+
+pre-0.9 to 0.9
+==============
+Fresh reinstall recommended.
+If you MUST upgrade from an existing installation of 0.8.x, a converter script needs to be run to preserve old user preferences and color options.  The script is located in source/backend_converter.php.  Run this script once, then remove the script from public access.
+DO NOT copy old configuration files.  There are many new configuration directives.
+
+0.7.x to 0.8.10
+===============
+Fresh reinstall recommended.  If using MySQL backend, apply all incremental SQL updates in the MySQL folder.
+
+0.8.9 to 0.8.10
+===============
+No backend changes, no changes in config options.
+
+0.8.8 to 0.8.9
+==============
+No backend changes.  No changes to conf files, except for $USE_COOKIES in conf/login.inc which is on by default (was off).  Please see conf/login.inc for more details.
+
+0.8.7 to 0.8.8
+==============
+No backend changes.  A few new directives have been added to conf/conf.inc and conf/login.inc.
+
+from 0.8.6 to 0.8.7
+===================
+No major changes.  A few new directives have been added to conf/conf.inc.
+
+from 0.7.11 to 0.8.6
+====================
+Version 0.8 is still in development.  It is recommended that you NOT UPGRADE and simply setup a separate installation for testing.
+
+from 0.7.9. to 0.7.10
+=====================
+No changes necessary to configuration or backend.
+
+from 0.7.8 to 0.7.9
+====================
+Update MySQL backend using "MySQL/0.7.9.sql".  No changes for file-based backend.
+Due to changes, it is recommended that configuration files NOT be copied, but reconfigured using the files included with the distribution.
+
+from 0.7.7 to 0.7.8
+====================
+A couple of new optional directives have been added to conf/mysqlrc.inc and 
+conf/conf.inc.  Config files may be copied, and no changes are required to the 
+backend.  
+
+from 0.7.6 to 0.7.7
+====================
+A few new options have been added to conf/login.inc, all other conf files
+may be copied over directly.  No changes required to backend.
+
+
+from 0.7.5 to 0.7.6
+====================
+A few new settings have been added to conf/conf.inc.  It is recommended
+that you do NOT over write this file, but install the new version and
+modify the settings manually.
+If you are using a MySQL backend, upgrade your webmail database using the
+SQL file MySQL/0.7.6.sql.
+	e.g.
+	$mysql -u user -p webmail < MySQL/0.7.6.sql	
+	
+	
+from 0.7.4 to 0.7.5
+===================
+A few new settings have been added to conf/conf.inc.  It is recommended
+that you do NOT over write this file, but install the new version and
+modify the settings manually.
+If you are using a MySQL backend, upgrade your webmail database using the
+SQL file in MySQL/0.7.5.sql.
+	e.g.
+	$mysql -u user -p webmail < MySQL/0.7.5.sql	
+	
+
+from 0.7.4 to 0.7.4-2
+=====================
+If IlohaMail is working in your environment, you DO NOT need this
+upgrade.
+If you received errors related '../lang' in the login page, simply swap the
+"IlohaMail/include/super2global.inc" file with the new one.
+
+
+from 0.7.3 to 0.7.4
+===================
+No changes needed in backend (file or MySQL).  
+You may copy configuration files over to new installation.
+
+
+from < 0.7.3 to 0.7.3
+=====================
+0.7.3 includes some features and improvements that require changes to the
+configuration and backend structure.  A "clean" re-install and
+configuration is recommended, and this document will walk you through some
+of the relevant changes.
+
+Configuration
+------------
+There are some new configuration options, as well as changes from previous
+versions.  Namely, conf/defaults.inc has been moved to conf/conf.inc, and
+conf/hosts.inc has been moved to login.inc.  There are some new
+configuration options in both new files (conf.inc, login.inc) so make sure
+you take a look at those as well.
+
+
+POP3 Cache
+-----------
+In addition to the "upload" folder, a "cache" folder must be created at the
+same level as "source", "include", etc, if you wish to enable POP3 caching.
+ POP3 caching will save network bandwidth and improve speed, however, POP3
+functionality will work fine without it.  If the "cache" folder does not
+exist, caching will be disabled.
+
+
+Log
+---
+A new log feature has been added to monitor login/logout activity.  This
+might be useful to detect unauthorized login attempts, and will log the
+user's IP as well as time.  This feature supports both file and db based
+backends.  See conf/conf.inc for configuration information.  This feature
+is disabled by default.
+
+
+MySQL
+------
+The conf/mysqlrc.inc file is more or less unchanged, however, a new
+optional table for logging user activity has been added.  To add this table
+to an exising database, run the mysql/0.7.3.sql file as such:
+
+	$mysql -u user -p dbname < mysql/0.7.3.sql

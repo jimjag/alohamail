@@ -1,0 +1,282 @@
+New strings:
+
+4/14/05
+compose.inc	-> $composeStrings['compose']
+read_message.inc-> $rmStrings[25] (added)
+
+4/1/05
+bookmarks.inc	-> $bmStrings['pubtitle'] (added)
+		-> $bmStrings['refresh'] = 'Refresh';
+		-> $bmStrings['private'] = 'Make entry private';
+		-> $bmStrings['public url'] = 'Public URL: %url';
+		-> $bmStrings['pubtitlenews'] = '%name\'s RSS Feeds';
+		-> $bmStrings['rss feeds'] = 'RSS Feeds';
+calendar.inc	-> $calStr['format'] = 'Format:';
+		-> $calStr['boxed'] = 'Boxed';
+		-> $calStr['list'] = 'List';
+		-> $calStr['scale'] = 'Scale:';
+		-> $calStr['bigger'] = 'Bigger';
+		-> $calStr['smaller'] = 'Smaller';
+edit_contact.inc -> $ecStrings[23] = 'Calendar URL';
+		 -> $ecStrings[24] = 'RSS/Atom';
+compose.inc	-> $composeStrings['save']
+
+
+3/23/05
+calendar.inc	-> $calStr['publish'] (added)
+		-> $calStr['no schedules public'] (added)
+		-> $calStr['name'] (added)
+		-> $calStr['public url'] (added)
+
+2/26/05
+main.inc	-> $mainStrings[32] (added)
+
+2/20/05
+read_message.inc -> $rmStrings[23], $rmStrings[24] (added)
+prefs.inc 	 -> $prefsStrings['3.12']
+1/7/05
+read_message.inc -> $rmStrings['back'] (added)
+		-> $rmStrings['next'] (added)
+		-> $rmStrings['previous'] (added)
+		-> $rmStrings['newer'] (added)
+		-> $rmStrings['older'] (added)
+defaultFolders.inc
+folders.inc
+		_>$draftbox (added)
+		->$defaults[$draftbox] (added)
+prefs.inc
+		-> $prefsStrings[1.6] (added)
+		-> $prefsStrings[1.7] (added)
+edit_contact.inc
+		-> $ecStrings[22] (added)
+
+1/6/05
+read_message.inc -> $rmStrings[12] (modified)
+		->$rmStrings[16] (modified)
+		->$rmStrings[21] (added)
+		->$rmStrings[22] (added)
+1/1/05
+prefs.inc -> $prefsStrings[8.5] (added)
+calendar.inc -> $calStr["color_names"] (added)
+		->$calStr['no schedules'] (added)
+
+12/31/04
+contacts.inc -> $cStrings["export"] (added)
+		-> $cStrings["import"] (added)
+		-> $cStrings["exportall"] (added)
+		-> $cStrings["exportgroups"] (added)
+		-> $cStrings["exportentries"] (added)
+		-> $cStrings["format"] (added)
+		-> $cStrings["filename"] (added)
+
+
+12/30/04
+prefs.inc -> $prefsStrings[4.9], [4.10], [6.6] (added)
+compose.inc -> $composeStrings[19] (added)
+read_message.inc -> $rmStrings[20] (added)
+
+12/27/04
+filters.inc (added)
+
+11/7/04
+prefs.inc -> $prefsStrings[2.16] (added)
+prefs.inc -> $prefsStrings[8.*] (added)
+
+10/17/04
+prefs.inc -> $sort_fields (modified)
+
+8/16/04
+edit_contact.inc -> $ecStrings[15-21] (added)
+
+4/8/04
+calendar.inc -> $calStr["public"] (added)
+
+3/28/04
+read_message.inc -> $rmStrings[17-19] (added)
+
+3/22/04
+contacts.inc 	-> $cStrings["share"] (added)
+		-> $cStrings["add_contact"] (added)
+		-> $cStrings["edit_contact"] (added)
+		-> $cStrings["add"] (added)
+		-> $cStrings["edit"] (added)	
+
+1/21/04
+prefs.inc -> $prefsStrings["6.5"] (added)
+
+12/30/03
+prefs.inc -> $prefsStrings["2.15"] (added)
+
+12/28/03
+main.inc -> $mainStrings[27-31] (added)
+
+12/27/03
+pref_colors.inc -> $pcStrings["5.6"] (added)
+
+12/16/03
+main.inc -> $mainStrings[24-26]
+prefs.inc -> $prefHeaderStrings[4]
+
+8/22/03
+prefs -> $pref_col_title, $pref_colstr[], $pref_col_label[] (added)
+
+07/16/03
+pref_identities.inc -> $piStrings["setdef"], $piStrings["isdef"] (added)
+prefs ->	$prefsStrings["0.0"] (changed)
+			$prefsStrings["0.3"], $prefsStrings["0.4"] (added)
+
+07/12/03
+contacts.inc -> $cStrings["instructions"] (added)
+
+07/09/03
+contacts.inc -> $cStrings["close"], $cStrings["addto"], $cStrings["showgrp"] (added)
+
+07/06/03
+main.inc -> mainStrings[23] (added)
+
+07/01/03
+folders.inc -> $fstr[] (added)
+
+03/31/03
+compose.inc -> $composeErrors[17]-[18] (added)
+
+03/30/03
+compose.inc -> $composeErrors[8] (added)
+
+03/29/03
+compose.inc -> $composeStrings[12]-[16], $composeErrors[6]-[7] (added)
+
+03/24/03
+read_message.inc -> $rmStrings[16] (added)
+
+03/22/03
+calendar.inc -> $calStr["disabled"] (added)
+bookmarks.inc -> $bmError[2] (added)
+login.inc (added)
+
+--------------------
+Added in 0.8.6
+--------------------
+read_message.inc
+	$rmStrings[15]
+calendar.inc (new file)
+	$calStr["go"] (added)
+
+--------------------
+Added in 0.8.5
+--------------------
+main.inc
+	$mainErrors[8] (added/updated)
+	$mainMessages (added)
+prefs.inc
+	$prefsStrings["1.4"]-["1.5"] (added)
+	$prefsStrings["4.8"] (added)
+	$prefsStrings["2.13"]-["2.14"] (added)
+pref_colors.inc
+	$pcStrings["0.4"] (added)
+	$pcStrings["3.3"]-["3.4"] (added)
+	$pcStrings[*] (appended ': ')
+dates.inc
+	$lang_datetime["hour_system"] (added)
+	$lang_datetime["ampm"] (added)
+	$lang_datetime["time_format"] (added)
+folders.inc
+	$fl_str (added)
+	removed "echo" calls
+
+--------------------
+Added in 0.8.0
+--------------------
+dates.inc
+	$lang_months (added)
+	$lang_datetime["monthyear"] (added)
+	$lang_datetime["dsow_short"] (added)
+	$lang_datetime["verbal"] (added)
+	$lang_datetime["verbal_short"] (added)
+	$lang_datetime["short_mon"] (added)
+prefs.inc
+	$prefHeaderStrings[3] (added);
+	$prefsStrings["4.7"] (added)
+	$prefsStrings["6.0"] - ["6.4"] (added)
+	$prefsStrings["2.9"] - ["2.12"] (added)
+	$prefsStrings["3.9"] - ["3.11"] (added)
+	$prefsStrings["7.0"] - ["7.2"] (added)
+pref_colors.inc
+	$pcStrings[4.1] (modified)
+	$pcStrings["5.0"] - ["5.5"] (added)
+search.inc
+	[significant changes]
+edit_folders.inc
+	$efStrings[8] - [11] (added)
+quota.inc (new file)
+tool.inc
+	$toolStrings["calendar"] (added)
+main.inc
+	$mainStrings[20]-[22] (added)
+pref_identities.inc (new file)
+
+--------------------
+Added in 0.7.8
+--------------------
+-none-
+
+--------------------
+Added in 0.7.7
+--------------------
+main.inc
+	$mainStrings[0] (modified)
+	$mainStrings[17] (added)
+	$mainStrings[18] (added)
+	$mainStrings[19] (added)
+	$mainErrors[7] (added)
+contacts.inc
+    $cStrings[10] (added)
+compose.inc
+	$composeStrings[11] (added)
+	$composeErrors[0] (modified)
+
+--------------------
+Added in 0.7.6
+--------------------
+contacts.inc
+	$cErrors (added)
+read_message.inc
+	$rmStrings[14] (added)
+prefs.inc
+	$prefsButtonStrings[3] (added)
+	$prefsStrings[4.5] (added)
+	$prefsStrings[4.6] (added)
+init.inc
+	$supported_charsets (should only include ISO-8859-1 for Western langs)\
+compose.inc
+	$composeStrings[9] (added)
+	$composeStrings[10] (added)
+	$composeHStrings[5] (added)
+
+--------------------
+Added in 0.7.5-Final
+--------------------
+read_message.inc
+	$rmStrings[13] (added)
+	
+	
+------------------
+Added in 0.7.5-RC1
+------------------
+compose.inc
+	$composeHStrings (added)
+    $composeErrors[5] (added)
+prefs.inc
+	$prefsStrings[3.8] (added)
+main.inc
+	$mainStrings[0] (modified, insert "%n" where number of messages should be shown)
+	$mainErrors[6] (added)
+read_message.inc
+	$rmStrings[11] (added)
+	$rmStrings[12] (added)
+edit_folders.inc
+	$errors[6] (added)
+dates.inc
+	"today" (added)
+search_form.inc
+	split "date" text field to "day", "month", and "year" fields

@@ -84,9 +84,11 @@ function iml_GetRawStructureArray($str){
     $line = str_replace(")(", ") (", $line);
 	
 	$struct = iml_ParseBSString($line);
-	if ((strcasecmp($struct[0], "message")==0) && (strcasecmp($struct[1], "rfc822")==0)){
-		$struct = array($struct);
-	}
+	if (!is_array($struct[0]) && !is_array($struct[1])){
+    	if ((strcasecmp($struct[0], "message")==0) && (strcasecmp($struct[1], "rfc822")==0)){
+	    	$struct = array($struct);
+	    }
+    }
     return $struct;
 }
 
@@ -97,15 +99,19 @@ function iml_GetPartArray($a, $part){
 		$pos = strpos($part, ".");
 		$rest = substr($original_part, $pos+1);
 		$part = substr($original_part, 0, $pos);
-		if ((strcasecmp($a[0], "message")==0) && (strcasecmp($a[1], "rfc822")==0)){
-			$a = $a[8];
-		}
+    	if (!is_array($a[0]) && !is_array($a[1])){
+		    if ((strcasecmp($a[0], "message")==0) && (strcasecmp($a[1], "rfc822")==0)){
+			    $a = $a[8];
+		    }
+        }
 		//echo "m - part: $original_part current: $part rest: $rest array: ".implode(" ", $a)."<br>\n";
 		return iml_GetPartArray($a[$part-1], $rest);
 	}else if ($part>0){
-		if ((strcasecmp($a[0], "message")==0) && (strcasecmp($a[1], "rfc822")==0)){
-			$a = $a[8];
-		}
+    	if (!is_array($a[0]) && !is_array($a[1])){
+		    if ((strcasecmp($a[0], "message")==0) && (strcasecmp($a[1], "rfc822")==0)){
+			    $a = $a[8];
+		    }
+        }
 		//echo "s - part: $part rest: $rest array: ".implode(" ", $a)."<br>\n";
 		if (is_array($a[$part-1])) return $a[$part-1];
 		else return false;
@@ -118,9 +124,11 @@ function iml_GetNumParts($a, $part){
 	if (is_array($a)){
 		$parent=iml_GetPartArray($a, $part);
 		
-		if ((strcasecmp($parent[0], "message")==0) && (strcasecmp($parent[1], "rfc822")==0)){
-			$parent = $parent[8];
-		}
+    	if (!is_array($parent[0]) && !is_array($parent[1])){
+		    if ((strcasecmp($parent[0], "message")==0) && (strcasecmp($parent[1], "rfc822")==0)){
+			    $parent = $parent[8];
+		    }
+        }
 
 		$is_array=true;
 		$c=0;
